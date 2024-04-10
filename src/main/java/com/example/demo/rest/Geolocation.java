@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "state"
 })
 @Generated("jsonschema2pojo")
-public class Geolocation {
+public class    Geolocation {
 
     @JsonProperty("name")
     private String name;
