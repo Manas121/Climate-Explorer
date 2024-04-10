@@ -22,7 +22,7 @@ public class GeolocationService {
 
         return webClient
                 .get()
-                .uri("/direct?q=London&limit=5&appid=5235d709fb93256bbfcd63adb95f4fad")
+                .uri("/direct?q=London&limit=5&appid=INPUT API KEY HERE")// This API Key will change
                 .retrieve()
                 .bodyToMono(Geolocation[].class).block();
 
