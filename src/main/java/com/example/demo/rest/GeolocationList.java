@@ -9,10 +9,16 @@ import com.vaadin.flow.router.Route;
 public class GeolocationList extends VerticalLayout {
 
     public GeolocationList (GeolocationService service){
-
+        String location = "London";
         var grid = new Grid <Geolocation>(Geolocation.class);
-        grid.setItems(service.getGeolocation());
+        grid.setItems(service.getGeolocation(location));
         add(grid);
+
+        double weatherInput[] = new double[1];
+        Geolocation[] geo = service.getGeolocation(location);
+        weatherInput[0] = geo[0].getLat();
+        weatherInput[1] = geo[0].getLon();
+
 
 
     }

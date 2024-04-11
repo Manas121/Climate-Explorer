@@ -17,13 +17,12 @@ public class GeolocationService {
     }
 
 
-    public Geolocation[] getGeolocation () {
+    public Geolocation[] getGeolocation (String location) {
+        String url = "/geo/1.0/direct?q="+location+"&limit=5&appid=578f5e2d2109b29226d0b74c71c4eabe";
 
-//         can we change this return a double array of lat/lon
-        // or just have it store the values if we want to display the table too
         return webClient
                 .get()
-                .uri("/geo/1.0/direct?q=London&limit=5&appid=578f5e2d2109b29226d0b74c71c4eabe")// This API Key will change
+                .uri(url)// This API Key will change
                 .retrieve()
                 .bodyToMono(Geolocation[].class).block();
 
