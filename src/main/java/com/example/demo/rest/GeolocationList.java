@@ -14,10 +14,10 @@ public class GeolocationList extends VerticalLayout {
         grid.setItems(service.getGeolocation(location));
         add(grid);
 
-        double weatherInput[] = new double[1];
-        Geolocation[] geo = service.getGeolocation(location);
-        weatherInput[0] = geo[0].getLat();
-        weatherInput[1] = geo[0].getLon();
+//        double weatherInput[] = new double[1];
+//        Geolocation[] geo = service.getGeolocation(location);
+//        weatherInput[0] = geo[0].getLat();
+//        weatherInput[1] = geo[0].getLon();
 
 
 
