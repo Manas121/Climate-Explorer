@@ -13,6 +13,7 @@ public class GeolocationList extends VerticalLayout {
         String location = "London";
         var grid = new Grid <Geolocation>(Geolocation.class);
         grid.setItems(service.getGeolocation(location));
+        grid.setColumns("name","lat","lon","country","state");
         add(grid);
 
         double weatherInput[] = new double[2];

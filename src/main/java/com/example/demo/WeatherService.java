@@ -8,17 +8,23 @@ import com.example.demo.rest.Current;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.Objects;
+
 
 @Service
 public class WeatherService {
+    String units = "metric";
     private final WebClient webClient;
 
     public WeatherService(WebClient.Builder builder) {
         webClient = builder.baseUrl("http://api.openweathermap.org").build();
     }
 
-    public WeatherData getWeatherData(double[] lat_lon) {
-        String url = "/data/3.0/onecall?lat=" + lat_lon[0] + "&lon=" + lat_lon[1] + "&exclude=minutely,hourly,daily,alerts&appid=578f5e2d2109b29226d0b74c71c4eabe";
+    public WeatherData getWeatherData(double[] lat_lon, String unit) {
+        if (!Objects.equals(unit, "")){
+            units = unit;
+        }
+        String url = "/data/3.0/onecall?lat=" + lat_lon[0] + "&lon=" + lat_lon[1] + "&units="+units+"&exclude=minutely,hourly,daily,alerts&appid=578f5e2d2109b29226d0b74c71c4eabe";
         String result = webClient
                 .get()
                 .uri(url)
