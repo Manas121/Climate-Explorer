@@ -1,7 +1,7 @@
+
 package com.example.demo.rest;
 
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import javax.annotation.Generated;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
@@ -10,195 +10,80 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.vaadin.flow.data.provider.DataProvider;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-        "dt",
-        "sunrise",
-        "sunset",
-        "temp",
-        "feels_like",
-        "pressure",
-        "humidity",
-        "dew_point",
-        "uvi",
-        "clouds",
-        "visibility",
-        "wind_speed",
-        "wind_deg",
-        "weather"
+    "lat",
+    "lon",
+    "timezone",
+    "timezone_offset",
+    "current"
 })
 @Generated("jsonschema2pojo")
 public class WeatherData {
-    @JsonProperty("dt")
-    private Integer dt;
-    @JsonProperty("sunrise")
-    private Integer sunrise;
-    @JsonProperty("sunset")
-    private Integer sunset;
-    @JsonProperty("temp")
-    private Double temp;
-    @JsonProperty("feels_like")
-    private Double feelsLike;
-    @JsonProperty("pressure")
-    private Integer pressure;
-    @JsonProperty("humidity")
-    private Integer humidity;
-    @JsonProperty("dew_point")
-    private Double dewPoint;
-    @JsonProperty("uvi")
-    private Integer uvi;
-    @JsonProperty("clouds")
-    private Integer clouds;
-    @JsonProperty("visibility")
-    private Integer visibility;
-    @JsonProperty("wind_speed")
-    private Double windSpeed;
-    @JsonProperty("wind_deg")
-    private Integer windDeg;
-    @JsonProperty("weather")
-    private List<Weather> weather;
+
+    @JsonProperty("lat")
+    private Double lat;
+    @JsonProperty("lon")
+    private Double lon;
+    @JsonProperty("timezone")
+    private String timezone;
+    @JsonProperty("timezone_offset")
+    private Integer timezoneOffset;
+    @JsonProperty("current")
+    private Current current;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new LinkedHashMap<String, Object>();
 
-    @JsonProperty("dt")
-    public Integer getDt() {
-        return dt;
+    @JsonProperty("lat")
+    public Double getLat() {
+        return lat;
     }
 
-    @JsonProperty("dt")
-    public void setDt(Integer dt) {
-        this.dt = dt;
+    @JsonProperty("lat")
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
-    @JsonProperty("sunrise")
-    public Integer getSunrise() {
-        return sunrise;
+    @JsonProperty("lon")
+    public Double getLon() {
+        return lon;
     }
 
-    @JsonProperty("sunrise")
-    public void setSunrise(Integer sunrise) {
-        this.sunrise = sunrise;
+    @JsonProperty("lon")
+    public void setLon(Double lon) {
+        this.lon = lon;
     }
 
-    @JsonProperty("sunset")
-    public Integer getSunset() {
-        return sunset;
+    @JsonProperty("timezone")
+    public String getTimezone() {
+        return timezone;
     }
 
-    @JsonProperty("sunset")
-    public void setSunset(Integer sunset) {
-        this.sunset = sunset;
+    @JsonProperty("timezone")
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 
-    @JsonProperty("temp")
-    public Double getTemp() {
-        return temp;
+    @JsonProperty("timezone_offset")
+    public Integer getTimezoneOffset() {
+        return timezoneOffset;
     }
 
-    @JsonProperty("temp")
-    public void setTemp(Double temp) {
-        this.temp = temp;
+    @JsonProperty("timezone_offset")
+    public void setTimezoneOffset(Integer timezoneOffset) {
+        this.timezoneOffset = timezoneOffset;
     }
 
-    @JsonProperty("feels_like")
-    public Double getFeelsLike() {
-        return feelsLike;
+    @JsonProperty("current")
+    public Current getCurrent() {
+        return current;
     }
 
-    @JsonProperty("feels_like")
-    public void setFeelsLike(Double feelsLike) {
-        this.feelsLike = feelsLike;
-    }
-
-    @JsonProperty("pressure")
-    public Integer getPressure() {
-        return pressure;
-    }
-
-    @JsonProperty("pressure")
-    public void setPressure(Integer pressure) {
-        this.pressure = pressure;
-    }
-
-    @JsonProperty("humidity")
-    public Integer getHumidity() {
-        return humidity;
-    }
-
-    @JsonProperty("humidity")
-    public void setHumidity(Integer humidity) {
-        this.humidity = humidity;
-    }
-
-    @JsonProperty("dew_point")
-    public Double getDewPoint() {
-        return dewPoint;
-    }
-
-    @JsonProperty("dew_point")
-    public void setDewPoint(Double dewPoint) {
-        this.dewPoint = dewPoint;
-    }
-
-    @JsonProperty("uvi")
-    public Integer getUvi() {
-        return uvi;
-    }
-
-    @JsonProperty("uvi")
-    public void setUvi(Integer uvi) {
-        this.uvi = uvi;
-    }
-
-    @JsonProperty("clouds")
-    public Integer getClouds() {
-        return clouds;
-    }
-
-    @JsonProperty("clouds")
-    public void setClouds(Integer clouds) {
-        this.clouds = clouds;
-    }
-
-    @JsonProperty("visibility")
-    public Integer getVisibility() {
-        return visibility;
-    }
-
-    @JsonProperty("visibility")
-    public void setVisibility(Integer visibility) {
-        this.visibility = visibility;
-    }
-
-    @JsonProperty("wind_speed")
-    public Double getWindSpeed() {
-        return windSpeed;
-    }
-
-    @JsonProperty("wind_speed")
-    public void setWindSpeed(Double windSpeed) {
-        this.windSpeed = windSpeed;
-    }
-
-    @JsonProperty("wind_deg")
-    public Integer getWindDeg() {
-        return windDeg;
-    }
-
-    @JsonProperty("wind_deg")
-    public void setWindDeg(Integer windDeg) {
-        this.windDeg = windDeg;
-    }
-
-    @JsonProperty("weather")
-    public List<Weather> getWeather() {
-        return weather;
-    }
-
-    @JsonProperty("weather")
-    public void setWeather(List<Weather> weather) {
-        this.weather = weather;
+    @JsonProperty("current")
+    public void setCurrent(Current current) {
+        this.current = current;
     }
 
     @JsonAnyGetter
@@ -210,5 +95,5 @@ public class WeatherData {
     public void setAdditionalProperty(String name, Object value) {
         this.additionalProperties.put(name, value);
     }
-}
 
+}
