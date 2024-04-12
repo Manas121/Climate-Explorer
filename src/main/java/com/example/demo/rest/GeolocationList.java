@@ -10,7 +10,7 @@ import com.vaadin.flow.router.Route;
 public class GeolocationList extends VerticalLayout {
 
     public GeolocationList (GeolocationService service){
-        String location = "London";
+        String location = "Boulder";
         var grid = new Grid <Geolocation>(Geolocation.class);
         grid.setItems(service.getGeolocation(location));
         grid.setColumns("name","lat","lon","country","state");
@@ -20,7 +20,7 @@ public class GeolocationList extends VerticalLayout {
         Geolocation[] geo = service.getGeolocation(location);
         weatherInput[0] = geo[0].getLat();
         weatherInput[1] = geo[0].getLon();
-        // add something to call the weather api
+        // add something to link this to weather api
 
 
 

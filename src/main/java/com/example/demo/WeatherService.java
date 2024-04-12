@@ -14,7 +14,7 @@ import java.util.Objects;
 @Service
 public class WeatherService {
     String units = "metric";
-    private final WebClient webClient;
+    private static WebClient webClient;
 
     public WeatherService(WebClient.Builder builder) {
         webClient = builder.baseUrl("http://api.openweathermap.org").build();
@@ -37,7 +37,8 @@ public class WeatherService {
             WeatherData weatherData = objectMapper.readValue(result, WeatherData.class);
             Current currentWeather = weatherData.getCurrent();
 
-            System.out.println("TEST OUTPUT: Current Temperature: " + currentWeather.getTemp());
+            System.out.println("TEST WEATHER OUTPUT:\n" +
+                    "Current Temperature: " + currentWeather.getTemp());
             System.out.println("Weather Description: " + currentWeather.getWeather().get(0).getDescription());
 
         } catch (JsonProcessingException e) {

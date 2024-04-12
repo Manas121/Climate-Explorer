@@ -1,14 +1,18 @@
 package com.example.demo;
 
 
+import com.example.demo.rest.Current;
 import com.example.demo.rest.Geolocation;
+import com.example.demo.rest.WeatherData;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Service
 public class GeolocationService {
 
-    private final WebClient webClient;
+    private static WebClient webClient;
 
     public GeolocationService(WebClient.Builder builder) {
 
@@ -19,6 +23,13 @@ public class GeolocationService {
 
     public Geolocation[] getGeolocation (String location) {
         String url = "/geo/1.0/direct?q="+location+"&limit=5&appid=578f5e2d2109b29226d0b74c71c4eabe";
+
+        String result = webClient
+                .get()
+                .uri(url)
+                .retrieve()
+                .bodyToMono(String.class)
+                .block();
 
         return webClient
                 .get()
