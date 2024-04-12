@@ -12,12 +12,18 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class GeolocationService {
 
-    private static WebClient webClient;
+    private static GeolocationService instance;
+    private final WebClient webClient;
 
-    public GeolocationService(WebClient.Builder builder) {
+    public GeolocationService() {
+        this.webClient = WebClient.builder().baseUrl("http://api.openweathermap.org").build();
+    }
 
-        webClient = builder.baseUrl("http://api.openweathermap.org").build();
-
+    public static GeolocationService getInstance() {
+        if (instance == null) {
+            instance = new GeolocationService();
+        }
+        return instance;
     }
 
 

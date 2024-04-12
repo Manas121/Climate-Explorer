@@ -18,7 +18,7 @@ public class ServiceTests {
                 .baseUrl("http://api.openweathermap.org");
 
 
-        GeolocationService geolocationService = new GeolocationService(builder);
+        GeolocationService geolocationService = new GeolocationService();
         Geolocation[] result = geolocationService.getGeolocation("London");
 
         Geolocation one_place = result[0];
@@ -39,7 +39,7 @@ public class ServiceTests {
 
         double[] test = {40.0154155, -105.270241};
         String units = "imperial";
-        WeatherService weatherService = new WeatherService(builder);
+        WeatherService weatherService = new WeatherService();
 
         WeatherData result = weatherService.getWeatherData(test, units);
         assertNotNull(result.getLat());
