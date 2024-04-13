@@ -39,7 +39,7 @@ public class ServiceTests {
 
         double[] test = {40.0154155, -105.270241};
         String units = "imperial";
-        WeatherService weatherService = new WeatherService();
+        WeatherService weatherService = new WeatherService(builder);
 
         WeatherData result = weatherService.getWeatherData(test, units);
         assertNotNull(result.getLat());
