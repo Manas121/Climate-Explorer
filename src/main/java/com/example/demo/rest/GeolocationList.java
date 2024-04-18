@@ -18,9 +18,12 @@ public class GeolocationList extends VerticalLayout {
 
         double weatherInput[] = new double[2];
         Geolocation[] geo = service.getGeolocation(location);
+
         weatherInput[0] = geo[0].getLat();
         weatherInput[1] = geo[0].getLon();
         // add something to link this to weather api
+
+
 
 
 
@@ -28,3 +31,4 @@ public class GeolocationList extends VerticalLayout {
 
 
 }
+

@@ -1,5 +1,6 @@
 package com.example.demo.rest;
 
+import com.example.demo.GeolocationService;
 import com.example.demo.WeatherService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -24,7 +25,7 @@ public class WeatherDataList extends VerticalLayout{
     String units = "imperial";
 
 
-    public WeatherDataList (WeatherService service){
+    public WeatherDataList (WeatherService service, GeolocationService serviceGeo){
 
         TextField field = new TextField();
         field.setLabel("Enter location");
@@ -37,11 +38,39 @@ public class WeatherDataList extends VerticalLayout{
 
 
         Button search = new Button("Search");
-
+        var grid = new Grid <Current>(Current.class);
+        var grid1 = new Grid<Weather>(Weather.class);
+        var icon = new Image();
         search.addClickListener(event -> {
             String location = field.getValue(); // Retrieve the text from the TextField
             // You can perform further actions with the savedText variable here
             //System.out.println(location);
+            Geolocation[] geo = serviceGeo.getGeolocation(location);
+            double weatherInput[] = new double[2];
+
+            weatherInput[0] = geo[0].getLat();
+            weatherInput[1] = geo[0].getLon();
+
+
+            Current currentWeather = service.getWeatherData(weatherInput, units).getCurrent();
+            currentWeather.setDt(convertTime(currentWeather.getDt()));
+            currentWeather.setSunrise(convertTime(currentWeather.getSunrise()));
+            currentWeather.setSunset(convertTime(currentWeather.getSunset()));
+            grid.setItems(currentWeather);
+            grid.setColumns("dt","temp","feelsLike","clouds","humidity","pressure","visibility","uvi","windSpeed","sunrise","sunset");
+
+            grid.setMaxHeight("100px");
+
+            List<Weather> weatherInfo = currentWeather.getWeather();
+            icon.setSrc("https://openweathermap.org/img/wn/"+weatherInfo.get(0).getIcon()+".png");
+
+            icon.setHeight("50px");
+            icon.setWidth("50px");
+
+
+            grid1.setItems(weatherInfo);
+            grid1.setColumns("main", "description");
+            grid1.setMaxHeight("100px");
 
 
 
@@ -52,33 +81,13 @@ public class WeatherDataList extends VerticalLayout{
         });
 
 
-        var grid = new Grid <Current>(Current.class);
-        Current currentWeather = service.getWeatherData(test, units).getCurrent();
-        currentWeather.setDt(convertTime(currentWeather.getDt()));
-        currentWeather.setSunrise(convertTime(currentWeather.getSunrise()));
-        currentWeather.setSunset(convertTime(currentWeather.getSunset()));
-        grid.setItems(currentWeather);
-        grid.setColumns("dt","temp","feelsLike","clouds","humidity","pressure","visibility","uvi","windSpeed","sunrise","sunset");
-        add(grid);
-        grid.setMaxHeight("100px");
-
-        List<Weather> weatherInfo = currentWeather.getWeather();
-        Image icon = new Image("https://openweathermap.org/img/wn/"+weatherInfo.get(0).getIcon()+".png", "Weather Icon");
-        add(icon);
-        icon.setHeight("50px");
-        icon.setWidth("50px");
-
-        var grid1 = new Grid<Weather>(Weather.class);
-        grid1.setItems(weatherInfo);
-        grid1.setColumns("main", "description");
-        grid1.setMaxHeight("100px");
-
-
-        add(icon);
+        //add(icon);
         add(field);
         add(search);
+        add(icon);
         add(grid1);
         add(grid);
+
 
     }
 

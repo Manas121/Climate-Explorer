@@ -14,11 +14,13 @@ public class ListTests {
         WebClient.Builder builder = WebClient.builder()
                 .baseUrl("http://api.openweathermap.org");
         WeatherService weatherService = new WeatherService(builder);
+        GeolocationService geolocationService = new GeolocationService();
 
         double[] test = {40.0154155, -105.270241};
         String units = "imperial";
 
-        WeatherDataList weatherDataList = new WeatherDataList(weatherService);
+        WeatherDataList weatherDataList = new WeatherDataList(weatherService, geolocationService);
+
     }
 
     @Test
