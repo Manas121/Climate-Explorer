@@ -1,20 +1,57 @@
 package com.example.demo.rest;
 
 import com.example.demo.WeatherService;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Span;
+import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
-import org.springframework.cglib.core.Local;
+
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
 
 @Route("/weather")
 public class WeatherDataList extends VerticalLayout{
+
+
+
+
     double[] test = {40.0154155, -105.270241};
     String units = "imperial";
+
+
     public WeatherDataList (WeatherService service){
+
+        TextField field = new TextField();
+        field.setLabel("Enter location");
+        field.setHelperText("Helper text");
+        field.setPlaceholder("Enter location");
+        field.setTooltipText("Tooltip text");
+        field.setClearButtonVisible(true);
+        field.setPrefixComponent(VaadinIcon.VAADIN_H.create());
+        field.setSuffixComponent(new Span(":)"));
+
+
+        Button search = new Button("Search");
+
+        search.addClickListener(event -> {
+            String location = field.getValue(); // Retrieve the text from the TextField
+            // You can perform further actions with the savedText variable here
+            //System.out.println(location);
+
+
+
+
+
+
+
+        });
+
+
         var grid = new Grid <Current>(Current.class);
         Current currentWeather = service.getWeatherData(test, units).getCurrent();
         currentWeather.setDt(convertTime(currentWeather.getDt()));
@@ -36,7 +73,10 @@ public class WeatherDataList extends VerticalLayout{
         grid1.setColumns("main", "description");
         grid1.setMaxHeight("100px");
 
+
         add(icon);
+        add(field);
+        add(search);
         add(grid1);
         add(grid);
 
