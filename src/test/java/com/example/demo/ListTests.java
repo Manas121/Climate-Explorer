@@ -14,7 +14,7 @@ public class ListTests {
         WebClient.Builder builder = WebClient.builder()
                 .baseUrl("http://api.openweathermap.org");
         WeatherService weatherService = new WeatherService(builder);
-        GeolocationService geolocationService = new GeolocationService();
+        GeolocationService geolocationService = new GeolocationService(builder);
 
         double[] test = {40.0154155, -105.270241};
         String units = "imperial";
@@ -28,7 +28,7 @@ public class ListTests {
         WebClient.Builder builder = WebClient.builder()
                 .baseUrl("http://api.openweathermap.org");
 
-        GeolocationService geoService = new GeolocationService();
+        GeolocationService geoService = new GeolocationService(builder);
 
         String location = "Boulder";
         GeolocationList geoList = new GeolocationList(geoService);

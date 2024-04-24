@@ -18,7 +18,7 @@ public class ServiceTests {
                 .baseUrl("http://api.openweathermap.org");
 
 
-        GeolocationService geolocationService = new GeolocationService();
+        GeolocationService geolocationService = new GeolocationService(builder);
         Geolocation[] result = geolocationService.getGeolocation("London");
 
         Geolocation one_place = result[0];

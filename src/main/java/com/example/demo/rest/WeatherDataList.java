@@ -25,6 +25,7 @@ public class WeatherDataList extends VerticalLayout{
     String units = "imperial";
 
 
+    //Usage of singleton pattern - service and serviceGeo are single instances of WeatherService and GeolocationService, invoking the use of singleton pattern
     public WeatherDataList (WeatherService service, GeolocationService serviceGeo){
 
         TextField field = new TextField();
