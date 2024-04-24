@@ -65,48 +65,6 @@ public class WeatherService {
 
 
 
-
-
-//    public WeatherService(WebClient.Builder builder) {
-//        webClient = builder.baseUrl("http://api.openweathermap.org").build();
-//    }
-
-    /*public WeatherData getWeatherData(double[] lat_lon, String unit) {
-        if (!Objects.equals(unit, "")){
-            units = unit;
-        }
-        String url = "/data/3.0/onecall?lat=" + lat_lon[0] + "&lon=" + lat_lon[1] + "&units="+units+"&exclude=minutely,hourly,daily,alerts&appid=578f5e2d2109b29226d0b74c71c4eabe";
-
-        String result = webClient
-                .get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(String.class)
-                .block();
-
-        try {
-            ObjectMapper objectMapper = new ObjectMapper();
-            WeatherData weatherData = objectMapper.readValue(result, WeatherData.class);
-            Current currentWeather = weatherData.getCurrent();
-
-            if (weatherData != null) {
-                printWeatherData(currentWeather);
-            }
-
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return webClient
-                .get()
-                .uri(url)
-                .retrieve()
-                .bodyToMono(WeatherData.class)
-                .block();
-    }*/
-
-
     private void printWeatherData(Current currentWeather) {
         if (currentWeather != null) {
             System.out.println("TEST WEATHER OUTPUT:");
