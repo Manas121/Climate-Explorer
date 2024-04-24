@@ -15,25 +15,12 @@ import java.util.Objects;
 public class WeatherService {
     private String units = "metric";
 
-    /*private static WeatherService instance;
-    private final WebClient webClient;
-
-    public WeatherService() {
-        this.webClient = WebClient.builder().baseUrl("http://api.openweathermap.org").build();
-    }
-
-    public static WeatherService getInstance() {
-        if (instance == null) {
-            instance = new WeatherService();
-        }
-        return instance;
-    }*/
-
 
     //Decorator pattern
     private final LoggingWebClientDecorator webClient;
 
     public WeatherService(WebClient.Builder builder) {
+        //builder pattern
         WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
         this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }

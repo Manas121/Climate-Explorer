@@ -12,33 +12,30 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Service
 public class GeolocationService {
 
-    private static GeolocationService instance;
-    private final WebClient webClient;
 
-    public GeolocationService() {
-        this.webClient = WebClient.builder().baseUrl("http://api.openweathermap.org").build();
+    private final LoggingWebClientDecorator webClient;
+
+    public GeolocationService(WebClient.Builder builder) {
+        //builder pattern
+        WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
+        this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }
 
-    public static GeolocationService getInstance() {
-        if (instance == null) {
-            instance = new GeolocationService();
-        }
-        return instance;
-    }
+
 
 
     public Geolocation[] getGeolocation (String location) {
         String url = "/geo/1.0/direct?q="+location+"&limit=5&appid=578f5e2d2109b29226d0b74c71c4eabe";
 
         String result = webClient
-                .get()
+                .getGeolocationServiceWebClient()
                 .uri(url)
                 .retrieve()
                 .bodyToMono(String.class)
                 .block();
 
         return webClient
-                .get()
+                .getGeolocationServiceWebClient()
                 .uri(url)// This API Key will change
                 .retrieve()
                 .bodyToMono(Geolocation[].class).block();
