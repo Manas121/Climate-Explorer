@@ -1,6 +1,7 @@
 package com.example.demo.rest;
 
 import com.example.demo.GeolocationService;
+import com.example.demo.ServiceFactory;
 import com.example.demo.WeatherService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -26,7 +27,10 @@ public class WeatherDataList extends VerticalLayout{
 
 
     //Usage of singleton pattern - service and serviceGeo are single instances of WeatherService and GeolocationService, invoking the use of singleton pattern
-    public WeatherDataList (WeatherService service, GeolocationService serviceGeo){
+    public WeatherDataList (){
+
+        WeatherService service = ServiceFactory.createWeatherService();
+        GeolocationService serviceGeo = ServiceFactory.createGeolocationService();
 
         TextField field = new TextField();
         field.setLabel("Enter location");
@@ -72,11 +76,6 @@ public class WeatherDataList extends VerticalLayout{
             grid1.setItems(weatherInfo);
             grid1.setColumns("main", "description");
             grid1.setMaxHeight("100px");
-
-
-
-
-
 
 
         });

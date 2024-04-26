@@ -15,8 +15,9 @@ public class GeolocationService {
 
     private final LoggingWebClientDecorator webClient;
 
-    public GeolocationService(WebClient.Builder builder) {
+    public GeolocationService() {
         //builder pattern
+        WebClient.Builder builder = WebClient.builder();
         WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
         this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }

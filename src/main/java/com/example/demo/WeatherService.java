@@ -19,8 +19,9 @@ public class WeatherService {
     //Decorator pattern
     private final LoggingWebClientDecorator webClient;
 
-    public WeatherService(WebClient.Builder builder) {
+    public WeatherService() {
         //builder pattern
+        WebClient.Builder builder = WebClient.builder();
         WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
         this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }
