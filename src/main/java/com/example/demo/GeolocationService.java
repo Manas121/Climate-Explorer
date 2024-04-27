@@ -40,7 +40,6 @@ public class GeolocationService {
                 .uri(url)// This API Key will change
                 .retrieve()
                 .bodyToMono(Geolocation[].class).block();
-
     }
 
 }

@@ -18,13 +18,7 @@ import java.util.List;
 
 @Route("/weather")
 public class WeatherDataList extends VerticalLayout{
-
-
-
-
-    double[] test = {40.0154155, -105.270241};
     String units = "imperial";
-
 
     //Usage of singleton pattern - service and serviceGeo are single instances of WeatherService and GeolocationService, invoking the use of singleton pattern
     public WeatherDataList (){

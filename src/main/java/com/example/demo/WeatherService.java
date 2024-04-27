@@ -59,8 +59,6 @@ public class WeatherService {
                 .retrieve()
                 .bodyToMono(WeatherData.class)
                 .block();
-
-
     }
 
 

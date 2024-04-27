@@ -29,7 +29,6 @@ public class LoggingWebClientDecorator {
         // Add logging functionality here
         System.out.println("Logging: Making Weather GET request");
         return delegate.get();
-
     }
 
 

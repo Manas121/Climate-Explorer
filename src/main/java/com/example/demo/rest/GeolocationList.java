@@ -8,7 +8,6 @@ import com.vaadin.flow.router.Route;
 
 @Route("/geo")
 public class GeolocationList extends VerticalLayout {
-
     public GeolocationList (GeolocationService service){
         String location = "Boulder";
         var grid = new Grid <Geolocation>(Geolocation.class);
@@ -21,12 +20,6 @@ public class GeolocationList extends VerticalLayout {
 
         weatherInput[0] = geo[0].getLat();
         weatherInput[1] = geo[0].getLon();
-        // add something to link this to weather api
-
-
-
-
-
     }
 
 
