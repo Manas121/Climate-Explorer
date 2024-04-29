@@ -42,38 +42,30 @@ public class WeatherDataList extends VerticalLayout{
         var icon = new Image();
         search.addClickListener(event -> {
             String location = field.getValue(); // Retrieve the text from the TextField
-            // You can perform further actions with the savedText variable here
-            //System.out.println(location);
             Geolocation[] geo = serviceGeo.getGeolocation(location);
-            double weatherInput[] = new double[2];
+            double[] weatherInput = new double[2];
 
             weatherInput[0] = geo[0].getLat();
             weatherInput[1] = geo[0].getLon();
-
 
             Current currentWeather = service.getWeatherData(weatherInput, units).getCurrent();
             currentWeather.setDt(convertTime(currentWeather.getDt()));
             currentWeather.setSunrise(convertTime(currentWeather.getSunrise()));
             currentWeather.setSunset(convertTime(currentWeather.getSunset()));
+
             grid.setItems(currentWeather);
             grid.setColumns("dt","temp","feelsLike","clouds","humidity","pressure","visibility","uvi","windSpeed","sunrise","sunset");
-
             grid.setMaxHeight("100px");
 
             List<Weather> weatherInfo = currentWeather.getWeather();
             icon.setSrc("https://openweathermap.org/img/wn/"+weatherInfo.get(0).getIcon()+".png");
-
             icon.setHeight("50px");
             icon.setWidth("50px");
-
 
             grid1.setItems(weatherInfo);
             grid1.setColumns("main", "description");
             grid1.setMaxHeight("100px");
-
-
         });
-
 
         //add(icon);
         add(field);
@@ -81,8 +73,6 @@ public class WeatherDataList extends VerticalLayout{
         add(icon);
         add(grid1);
         add(grid);
-
-
     }
 
     public static Integer convertTime(Integer utc) {

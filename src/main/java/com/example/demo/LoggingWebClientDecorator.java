@@ -19,14 +19,11 @@ public class LoggingWebClientDecorator {
     }
 
     public WebClient.RequestHeadersUriSpec<?> getWeatherServiceWebClient() {
-        // Add logging functionality here
         System.out.println("Logging: Making Weather GET request");
         return delegate.get();
     }
 
     public WebClient.RequestHeadersUriSpec <?> getGeolocationServiceWebClient(){
-
-        // Add logging functionality here
         System.out.println("Logging: Making Weather GET request");
         return delegate.get();
     }

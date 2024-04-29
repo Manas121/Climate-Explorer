@@ -49,8 +49,6 @@ public class WeatherService {
             return null;
         }
 
-
-
         // Use the decorated webClient to make requests
         // For example:
         return webClient.
@@ -60,9 +58,6 @@ public class WeatherService {
                 .bodyToMono(WeatherData.class)
                 .block();
     }
-
-
-
 
     private void printWeatherData(Current currentWeather) {
         if (currentWeather != null) {
