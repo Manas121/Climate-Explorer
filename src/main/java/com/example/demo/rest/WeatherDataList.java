@@ -37,11 +37,11 @@ public class WeatherDataList extends VerticalLayout{
 
 
         Button search = new Button("Search");
-        var grid = new Grid <Current>(Current.class);
-        var grid1 = new Grid<Weather>(Weather.class);
+        var gridCurrent = new Grid <Current>(Current.class);
+        var gridWeather = new Grid<Weather>(Weather.class);
         var icon = new Image();
         search.addClickListener(event -> {
-            String location = field.getValue(); // Retrieve the text from the TextField
+            String location = field.getValue();
             Geolocation[] geo = serviceGeo.getGeolocation(location);
             double[] weatherInput = new double[2];
 
@@ -53,26 +53,26 @@ public class WeatherDataList extends VerticalLayout{
             currentWeather.setSunrise(convertTime(currentWeather.getSunrise()));
             currentWeather.setSunset(convertTime(currentWeather.getSunset()));
 
-            grid.setItems(currentWeather);
-            grid.setColumns("dt","temp","feelsLike","clouds","humidity","pressure","visibility","uvi","windSpeed","sunrise","sunset");
-            grid.setMaxHeight("100px");
+            gridCurrent.setItems(currentWeather);
+            gridCurrent.setColumns("dt","temp","feelsLike","clouds","humidity","pressure","visibility","uvi","windSpeed","sunrise","sunset");
+            gridCurrent.setMaxHeight("100px");
 
             List<Weather> weatherInfo = currentWeather.getWeather();
             icon.setSrc("https://openweathermap.org/img/wn/"+weatherInfo.get(0).getIcon()+".png");
             icon.setHeight("50px");
             icon.setWidth("50px");
 
-            grid1.setItems(weatherInfo);
-            grid1.setColumns("main", "description");
-            grid1.setMaxHeight("100px");
+            gridWeather.setItems(weatherInfo);
+            gridWeather.setColumns("main", "description");
+            gridWeather.setMaxHeight("100px");
         });
 
         //add(icon);
         add(field);
         add(search);
         add(icon);
-        add(grid1);
-        add(grid);
+        add(gridWeather);
+        add(gridCurrent);
     }
 
     public static Integer convertTime(Integer utc) {
