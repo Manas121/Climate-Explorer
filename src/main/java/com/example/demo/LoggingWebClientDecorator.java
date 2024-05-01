@@ -24,7 +24,7 @@ public class LoggingWebClientDecorator {
     }
 
     public WebClient.RequestHeadersUriSpec <?> getGeolocationServiceWebClient(){
-        System.out.println("Logging: Making Weather GET request");
+        System.out.println("Logging: Making Geo GET request");
         return delegate.get();
     }
 

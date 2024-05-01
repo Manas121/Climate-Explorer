@@ -17,7 +17,6 @@ public class ServiceTests {
         WebClient.Builder builder = WebClient.builder()
                 .baseUrl("http://api.openweathermap.org");
 
-
         GeolocationService geolocationService = new GeolocationService();
         Geolocation[] result = geolocationService.getGeolocation("London");
 
@@ -61,8 +60,6 @@ public class ServiceTests {
         assertNotNull(currentData.getVisibility());
         assertNotNull(currentData.getWindDeg());
         assertNotNull(currentData.getWindSpeed());
-
-
 
         Weather weatherInfo = currentData.getWeather().get(0);
         assertNotNull(weatherInfo.getIcon());
