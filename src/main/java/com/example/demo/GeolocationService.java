@@ -15,15 +15,12 @@ public class GeolocationService {
 
     private final LoggingWebClientDecorator webClient;
 
+    // Builder Pattern
     public GeolocationService() {
-        //builder pattern
         WebClient.Builder builder = WebClient.builder();
         WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
         this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }
-
-
-
 
     public Geolocation[] getGeolocation (String location) {
         String url = "/geo/1.0/direct?q="+location+"&limit=5&appid=578f5e2d2109b29226d0b74c71c4eabe";
@@ -37,7 +34,7 @@ public class GeolocationService {
 
         return webClient
                 .getGeolocationServiceWebClient()
-                .uri(url)// This API Key will change
+                .uri(url)
                 .retrieve()
                 .bodyToMono(Geolocation[].class).block();
     }

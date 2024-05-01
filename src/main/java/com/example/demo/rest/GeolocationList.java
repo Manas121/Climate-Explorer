@@ -20,6 +20,7 @@ import java.util.List;
 @Route("/geo")
 public class GeolocationList extends VerticalLayout {
     public GeolocationList (){
+        // Use of singleton
         GeolocationService serviceGeo = ServiceFactory.createGeolocationService();
         WeatherService serviceWeather = ServiceFactory.createWeatherService();
 

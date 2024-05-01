@@ -19,15 +19,14 @@ public class WeatherService {
     //Decorator pattern
     private final LoggingWebClientDecorator webClient;
 
+    // Builder pattern
     public WeatherService() {
-        //builder pattern
         WebClient.Builder builder = WebClient.builder();
         WebClient originalWebClient = builder.baseUrl("http://api.openweathermap.org").build();
         this.webClient = new LoggingWebClientDecorator(originalWebClient);
     }
 
     public WeatherData getWeatherData(double[] lat_lon, String unit) {
-
         String result = webClient
                 .getWeatherServiceWebClient()
                 .uri("/data/3.0/onecall?lat=" + lat_lon[0] + "&lon=" + lat_lon[1] + "&units=" + units + "&exclude=minutely,hourly,daily,alerts&appid=578f5e2d2109b29226d0b74c71c4eabe")
@@ -49,8 +48,7 @@ public class WeatherService {
             return null;
         }
 
-        // Use the decorated webClient to make requests
-        // For example:
+        // Use the decorated webClient to make requests. Ex:
         return webClient.
                 getWeatherServiceWebClient()
                 .uri("/data/3.0/onecall?lat=" + lat_lon[0] + "&lon=" + lat_lon[1] + "&units=" + units + "&exclude=minutely,hourly,daily,alerts&appid=578f5e2d2109b29226d0b74c71c4eabe")
@@ -61,7 +59,6 @@ public class WeatherService {
 
     private void printWeatherData(Current currentWeather) {
         if (currentWeather != null) {
-            System.out.println("TEST WEATHER OUTPUT:");
             System.out.println("Current Temperature: " + currentWeather.getTemp());
             System.out.println("Weather Description: " + currentWeather.getWeather().get(0).getDescription());
         }

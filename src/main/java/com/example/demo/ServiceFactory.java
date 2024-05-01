@@ -3,14 +3,23 @@ package com.example.demo;
 
 import org.springframework.web.reactive.function.client.WebClient;
 public class ServiceFactory {
+    private static WeatherService weatherInstance;
+    private static GeolocationService geoInstance;
 
     // Logic to create and configure services
+    // singleton pattern - only one instance of the services
     public static WeatherService createWeatherService() {
-        return new WeatherService();
+        if (weatherInstance == null) {
+            weatherInstance = new WeatherService();
+        }
+        return weatherInstance;
     }
 
     public static GeolocationService createGeolocationService() {
-        return new GeolocationService();
+        if (geoInstance == null) {
+            geoInstance = new GeolocationService();
+        }
+        return geoInstance;
     }
 
 

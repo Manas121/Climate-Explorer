@@ -23,7 +23,7 @@ public class WeatherDataList extends VerticalLayout{
     //Usage of singleton pattern - service and serviceGeo are single instances of WeatherService and GeolocationService, invoking the use of singleton pattern
     public WeatherDataList (){
 
-        WeatherService service = ServiceFactory.createWeatherService();
+        WeatherService serviceWeather = ServiceFactory.createWeatherService();
         GeolocationService serviceGeo = ServiceFactory.createGeolocationService();
 
         TextField field = new TextField();
@@ -45,10 +45,11 @@ public class WeatherDataList extends VerticalLayout{
             Geolocation[] geo = serviceGeo.getGeolocation(location);
             double[] weatherInput = new double[2];
 
+            // Returns data for the most popular location matching input
             weatherInput[0] = geo[0].getLat();
             weatherInput[1] = geo[0].getLon();
 
-            Current currentWeather = service.getWeatherData(weatherInput, units).getCurrent();
+            Current currentWeather = serviceWeather.getWeatherData(weatherInput, units).getCurrent();
             currentWeather.setDt(convertTime(currentWeather.getDt()));
             currentWeather.setSunrise(convertTime(currentWeather.getSunrise()));
             currentWeather.setSunset(convertTime(currentWeather.getSunset()));
