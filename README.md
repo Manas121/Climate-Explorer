@@ -10,3 +10,6 @@ Libraries/Frameworks : Spring Boot for backend server, apache maven, react, Vaad
 Functional elements: Sign in, api calls, search feature, display results feature, storing data in database (user, possibly more)
 
 OO design patterns: Factory method pattern, singleton pattern, decorator pattern, strategy pattern, builder pattern
+
+Uml:
+![IMG_1741](https://github.com/Manas121/Climate-Explorer/assets/111887544/be440a21-ffc1-4089-b7b7-bf57737a80b6)
