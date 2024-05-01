@@ -3,7 +3,6 @@ package com.example.demo.rest;
 import com.example.demo.GeolocationService;
 import com.example.demo.ServiceFactory;
 import com.example.demo.WeatherService;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Image;
@@ -18,8 +17,14 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Route("/geo")
-public class GeolocationList extends VerticalLayout {
-    public GeolocationList (){
+public class GeolocationList extends VerticalLayout implements IList {
+
+    public GeolocationList(){
+        displayList();
+    }
+
+    // geo Implementation for strategy class
+    public void displayList (){
         // Use of singleton
         GeolocationService serviceGeo = ServiceFactory.createGeolocationService();
         WeatherService serviceWeather = ServiceFactory.createWeatherService();
@@ -112,7 +117,7 @@ public class GeolocationList extends VerticalLayout {
 //        weatherInput[1] = geo[0].getLon();
     }
 
-    public static Integer convertTime(Integer utc) {
+    public Integer convertTime(Integer utc) {
         LocalDateTime time_utc = LocalDateTime.ofEpochSecond(utc, 0, ZoneOffset.UTC);
         int hour = time_utc.getHour();
         int minutes = time_utc.getMinute();

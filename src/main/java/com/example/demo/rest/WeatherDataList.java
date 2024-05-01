@@ -17,11 +17,16 @@ import java.time.ZoneOffset;
 import java.util.List;
 
 @Route("/weather")
-public class WeatherDataList extends VerticalLayout{
+public class WeatherDataList extends VerticalLayout implements IList{
     String units = "imperial";
 
+    public WeatherDataList() {
+        displayList();
+    }
+
+    // Weather Implementation for strategy class
     //Usage of singleton pattern - service and serviceGeo are single instances of WeatherService and GeolocationService, invoking the use of singleton pattern
-    public WeatherDataList (){
+    public void displayList (){
 
         WeatherService serviceWeather = ServiceFactory.createWeatherService();
         GeolocationService serviceGeo = ServiceFactory.createGeolocationService();
@@ -76,7 +81,7 @@ public class WeatherDataList extends VerticalLayout{
         add(gridCurrent);
     }
 
-    public static Integer convertTime(Integer utc) {
+    public Integer convertTime(Integer utc) {
         LocalDateTime time_utc = LocalDateTime.ofEpochSecond(utc, 0, ZoneOffset.UTC);
         int hour = time_utc.getHour();
         int minutes = time_utc.getMinute();
